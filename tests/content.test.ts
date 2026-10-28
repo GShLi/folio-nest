@@ -86,6 +86,16 @@ describe('versioned content contract', () => {
     missing.projects[0].cover.url = '/../package.json';
     await expect(validateAssets(missing)).rejects.toThrow('不能超出');
   });
+  it('validates chapter image URLs and checks their local files', async () => {
+    const content = clone();
+    content.projects[0].sections[0].images = [
+      { url: '/images/missing-section.png', alt: '章节配图' },
+    ];
+    expect(parsePortfolio(content).projects[0].sections[0].images).toHaveLength(1);
+    await expect(validateAssets(content)).rejects.toThrow('找不到图片');
+    content.projects[0].sections[0].images[0].url = 'javascript:alert(1)';
+    expect(() => parsePortfolio(content)).toThrow('images');
+  });
   it('new/export CLI preserves drafts in source but excludes them from public output', async () => {
     const directory = await mkdtemp(join(tmpdir(), 'work-show-content-'));
     try {

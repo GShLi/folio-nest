@@ -28,7 +28,8 @@
     {
       "id": "implementation",
       "title": "技术实现",
-      "paragraphs": ["说明关键难点、选择的方案和取舍。"]
+      "paragraphs": ["说明关键难点、选择的方案和取舍。"],
+      "images": []
     },
     {
       "id": "results",

@@ -1271,15 +1271,45 @@ main:focus {
 .project-gallery {
   display: grid;
   gap: 24px;
+  margin-top: 28px;
 }
 .project-gallery figure {
   margin: 0;
 }
 .project-gallery .project-image {
-  aspect-ratio: 1.5;
+  aspect-ratio: auto;
+  height: auto;
+  min-height: 120px;
+  background: var(--surface);
+}
+.project-gallery .image-fallback {
+  color: var(--muted);
+  font-size: 13px;
+  padding: 16px;
 }
 .project-gallery img {
+  height: auto;
   object-fit: contain;
+}
+.project-gallery button {
+  position: relative;
+  cursor: zoom-in;
+  border: 1px solid var(--line);
+  overflow: hidden;
+}
+.inline-image-zoom {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  pointer-events: none;
 }
 figcaption {
   color: var(--muted);

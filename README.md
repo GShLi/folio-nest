@@ -251,17 +251,18 @@ pnpm content:new my-mini-app
 
 常用字段：
 
-| 字段              | 用法                                                            |
-| ----------------- | --------------------------------------------------------------- |
-| `category`        | 引用 `categories` 中已有的 ID，默认包含 `mini-program` 和 `web` |
-| `sortOrder`       | 数值越小越靠前；相同数值时按 slug 排序                          |
-| `featured`        | 首页主推；最多一个已发布项目设为 `true`                         |
-| `cover`           | 封面图片，包含 `url` 和 `alt`                                   |
-| `gallery`         | 可选截图数组，每张图片格式同 `cover`                            |
-| `links.demo`      | 可选 HTTPS 在线体验地址                                         |
-| `links.source`    | 可选 HTTPS 源码地址                                             |
-| `miniProgramCode` | 可选小程序码图片，格式同 `cover`                                |
-| `sections`        | 正文，支持段落、功能列表、步骤列表和可展开的补充说明            |
+| 字段                | 用法                                                            |
+| ------------------- | --------------------------------------------------------------- |
+| `category`          | 引用 `categories` 中已有的 ID，默认包含 `mini-program` 和 `web` |
+| `sortOrder`         | 数值越小越靠前；相同数值时按 slug 排序                          |
+| `featured`          | 首页主推；最多一个已发布项目设为 `true`                         |
+| `cover`             | 封面图片，包含 `url` 和 `alt`                                   |
+| `gallery`           | 可选截图数组，按顺序分散到章节之间，每张图片格式同 `cover`      |
+| `sections[].images` | 可选章节配图，显示在对应章节文字之后，格式同 `cover`            |
+| `links.demo`        | 可选 HTTPS 在线体验地址                                         |
+| `links.source`      | 可选 HTTPS 源码地址                                             |
+| `miniProgramCode`   | 可选小程序码图片，格式同 `cover`                                |
+| `sections`          | 正文，支持段落、功能列表、步骤列表和可展开的补充说明            |
 
 没有在线演示或源码时，省略相应字段，页面不会显示空按钮。可选字段不要填写 `null`。正文使用纯文本，不解析 Markdown 或 HTML。完整字段与章节示例见 [内容维护文档](docs/content.md)。
 
@@ -279,6 +280,21 @@ pnpm content:new my-mini-app
 上面的站内路径对应 `public/images/my-mini-app/cover.webp`。JSON 中仅保存链接和说明，不写入 base64 或图片二进制。
 
 封面、截图和小程序码均采用相同格式。建议压缩图片后上传，使用 WebP/AVIF 等适合网页的格式。外部链接应允许直接访问，不依赖登录或会过期的签名；构建会检查已发布项目的站内图片是否存在，但不会逐张下载检查远程图片，请在预览时确认显示正常。
+
+详情页支持图文穿插。推荐在对应的 `sections` 章节内添加 `images`：
+
+```json
+{
+  "id": "search",
+  "title": "检索体验",
+  "paragraphs": ["介绍检索流程、实现方案和实际效果。"],
+  "images": [
+    { "url": "https://images.example.com/project/search.webp", "alt": "检索结果与来源引用" }
+  ]
+}
+```
+
+现有 `gallery` 无需迁移，会按顺序分散到各章节末尾；需要指定图文对应关系时使用 `sections[].images`。图片保留原始比例并支持放大。首次启用本功能须重新构建部署网站，之后可通过更新 JSON 维护配图。规则详见 [案例正文](docs/content.md#案例正文)。
 
 ### 4. 校验、预览和发布
 

@@ -39,7 +39,8 @@
 | `tags`              | 是       | 技术栈字符串数组，至少一项                                 |
 | `role` / `duration` | 是       | 负责方向与实际项目周期，自由文本                           |
 | `sections`          | 是       | 按顺序展示的正文段落，至少一个章节                         |
-| `gallery`           | 否       | 截图数组，每项格式同 cover，支持点击放大                   |
+| `gallery`           | 否       | 兼容截图数组，按顺序均匀分配到章节末尾，支持点击放大       |
+| `sections[].images` | 否       | 当前章节的配图数组，每项格式同 cover，显示在该章文字之后   |
 | `links.demo`        | 否       | HTTPS 在线体验链接                                         |
 | `links.source`      | 否       | HTTPS 源码链接                                             |
 | `miniProgramCode`   | 否       | 小程序码图片，格式同 cover，支持放大                       |
@@ -55,6 +56,12 @@
   "id": "implementation",
   "title": "解决了哪些技术问题",
   "paragraphs": ["描述背景和约束，说明自己负责的部分。", "描述具体方案、取舍和可验证的结果。"],
+  "images": [
+    {
+      "url": "https://images.example.com/project/implementation.webp",
+      "alt": "关键功能界面及处理结果"
+    }
+  ],
   "features": [{ "title": "支付状态一致性", "text": "说明幂等处理与失败恢复是如何实现的。" }],
   "steps": ["用户操作", "接口校验", "状态更新"],
   "disclosure": {
@@ -64,7 +71,13 @@
 }
 ```
 
-`id`、`title`、`paragraphs` 必填；`features`、`steps`、`disclosure` 可选。章节 ID 在单个项目内唯一。对标题、段落、项目数量等限制，以生成的 Schema 为准。不要把示例中的技术结论或成果直接当成自己的经历。
+`id`、`title`、`paragraphs` 必填；`images`、`features`、`steps`、`disclosure` 可选。章节 ID 在单个项目内唯一。对标题、段落、项目数量等限制，以生成的 Schema 为准。不要把示例中的技术结论或成果直接当成自己的经历。
+
+推荐将图片写入对应章节的 `images`（每章最多 20 张），页面按「章节文字 → 章节配图 → 下一章节」展示。图片保留原始比例，`alt` 同时作为图注，支持点击放大。如果需要在两段介绍之间插图，可拆成两个章节。
+
+旧数据无需修改：项目级 `gallery` 会按原数组顺序均匀分配到各章节末尾，不再集中在文章最后。这种分配只依据顺序，不判断图片与文字的含义；精确对应请使用 `sections[].images`。两者同时存在时，已在章节中使用的图片 URL 不再从 `gallery` 重复插入，其余图片继续自动分配。
+
+首次使用此功能需要重新构建并部署网站代码；旧版页面不识别 `images` 字段。部署新版后可继续只更新 JSON 来调整配图，静态页面与 SEO 的同步仍需重新构建。
 
 ## 管理命令
 

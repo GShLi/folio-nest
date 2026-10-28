@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router';
 import { ArrowLeft, ArrowRight, ArrowUpRight, CornersOut, Plus } from '@phosphor-icons/react';
 import { usePortfolio } from '../content/ContentProvider';
 import { categoryLabel } from '../content/schema';
+import { projectSections } from '../content/project-sections';
 import type { ImageAsset, Project } from '../content/schema';
 import { ProjectImage } from '../components/ProjectImage';
 import { ImageDialog } from '../components/ImageDialog';
@@ -112,7 +113,7 @@ function ProjectDetail({ project }: { project: Project }) {
           )}
         </aside>
         <div className="case-content">
-          {project.sections.map((section) => (
+          {projectSections(project).map((section) => (
             <section key={section.id} id={section.id}>
               <h2>{section.title}</h2>
               {section.paragraphs.map((paragraph, index) => (
@@ -152,23 +153,23 @@ function ProjectDetail({ project }: { project: Project }) {
                   <p>{section.disclosure.text}</p>
                 </details>
               )}
+              {section.images.length > 0 && (
+                <div className="project-gallery">
+                  {section.images.map((item, index) => (
+                    <figure key={index}>
+                      <button onClick={() => setImage(item)} aria-label={`放大：${item.alt}`}>
+                        <ProjectImage image={item} />
+                        <span className="inline-image-zoom" aria-hidden="true">
+                          <CornersOut size={18} />
+                        </span>
+                      </button>
+                      <figcaption>{item.alt}</figcaption>
+                    </figure>
+                  ))}
+                </div>
+              )}
             </section>
           ))}
-          {Boolean(project.gallery?.length) && (
-            <section>
-              <h2>更多项目截图</h2>
-              <div className="project-gallery">
-                {project.gallery!.map((item, index) => (
-                  <figure key={index}>
-                    <button onClick={() => setImage(item)} aria-label={`放大：${item.alt}`}>
-                      <ProjectImage image={item} />
-                    </button>
-                    <figcaption>{item.alt}</figcaption>
-                  </figure>
-                ))}
-              </div>
-            </section>
-          )}
         </div>
       </div>
       {next && (

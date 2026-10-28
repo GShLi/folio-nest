@@ -29,6 +29,7 @@ export const sectionSchema = z.strictObject({
   id: slug,
   title: text(100),
   paragraphs: z.array(text(5000)).min(1).max(20),
+  images: z.array(imageSchema).max(20).optional(),
   features: z
     .array(z.strictObject({ title: text(100), text: text(2000) }))
     .max(12)

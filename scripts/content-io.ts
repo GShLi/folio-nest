@@ -35,6 +35,7 @@ export async function validateAssets(content: Portfolio, directory = 'public') {
     const images = [
       project.cover,
       ...(project.gallery ?? []),
+      ...project.sections.flatMap((section) => section.images ?? []),
       ...(project.miniProgramCode ? [project.miniProgramCode] : []),
     ];
     for (const image of images) {

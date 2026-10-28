@@ -147,6 +147,43 @@
               "maxLength": 5000
             }
           },
+          "images": {
+            "maxItems": 20,
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "url": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "maxLength": 2048,
+                      "format": "uri",
+                      "pattern": "^https:\\/\\/[^\\s\\\\@]+$"
+                    },
+                    {
+                      "type": "string",
+                      "minLength": 2,
+                      "maxLength": 2048,
+                      "pattern": "^\\/(?!\\/)[^\\s\\\\?#%]+$"
+                    }
+                  ],
+                  "description": "图片的 HTTPS 链接，或站内 /images/... 路径。不支持 base64。"
+                },
+                "alt": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 200,
+                  "description": "图片内容描述，供无障碍阅读与加载失败时使用。"
+                }
+              },
+              "required": [
+                "url",
+                "alt"
+              ],
+              "additionalProperties": false
+            }
+          },
           "features": {
             "maxItems": 12,
             "type": "array",

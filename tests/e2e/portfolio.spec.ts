@@ -132,6 +132,10 @@ test('JSON controls publication, optional project links, gallery and QR code', a
     'rel',
     'noopener noreferrer',
   );
+  await expect(page.locator('.case-content > section').first().locator('figcaption')).toHaveText(
+    '项目搜索界面截图',
+  );
+  await expect(page.getByRole('heading', { name: '更多项目截图' })).toHaveCount(0);
   await page.getByRole('button', { name: '放大：项目搜索界面截图' }).click();
   await expect(page.getByRole('dialog')).toBeVisible();
   await page.getByRole('button', { name: '关闭大图' }).click();
@@ -139,6 +143,43 @@ test('JSON controls publication, optional project links, gallery and QR code', a
   await expect(page.getByRole('dialog')).toBeVisible();
   await page.goto('/projects/mori');
   await expect(page.locator('main h1')).toContainText('这个页面还没有收录');
+});
+
+test('chapter images follow their text in both themes and remain accessible', async ({
+  page,
+}, testInfo) => {
+  const data = structuredClone(content);
+  const project = data.projects[1];
+  project.sections[0].images = [{ url: '/images/atlas.png', alt: '内容管理界面' }];
+  project.sections[1].images = [{ url: '/images/trail.png', alt: '功能交互展示' }];
+  project.gallery = [{ url: '/images/atlas.png', alt: '旧图集中的同一张图' }];
+  await page.route('**/content/portfolio.json', (route) => route.fulfill({ json: data }));
+  await page.goto('/projects/atlas');
+  const chapters = page.locator('.case-content > section');
+  await expect(chapters.nth(0).locator('figcaption')).toHaveText('内容管理界面');
+  await expect(chapters.nth(1).locator('figcaption')).toHaveText('功能交互展示');
+  await expect(page.locator('.project-gallery figure')).toHaveCount(2);
+  const zoom = chapters.nth(0).getByRole('button', { name: '放大：内容管理界面' });
+  await zoom.click();
+  await expect(page.getByRole('dialog')).toBeVisible();
+  await page.keyboard.press('Escape');
+  await expect(zoom).toBeFocused();
+  for (const theme of ['light', 'dark']) {
+    if (theme === 'dark') await page.getByRole('button', { name: '切换到深色模式' }).click();
+    await chapters.nth(0).scrollIntoViewIfNeeded();
+    await expect(chapters.nth(0).locator('img')).toBeVisible();
+    expect(
+      await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth),
+    ).toBe(true);
+    const results = await new AxeBuilder({ page })
+      .withTags(['wcag2a', 'wcag2aa', 'wcag21aa'])
+      .analyze();
+    expect(results.violations).toEqual([]);
+    await page.screenshot({
+      path: `artifacts/${testInfo.project.name}-inline-${theme}.png`,
+      animations: 'disabled',
+    });
+  }
 });
 
 test('empty data, broken image, and no search results remain usable', async ({ page }) => {
