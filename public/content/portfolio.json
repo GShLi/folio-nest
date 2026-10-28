@@ -1,0 +1,234 @@
+{
+  "$schema": "./portfolio.schema.json",
+  "schemaVersion": 1,
+  "site": {
+    "name": "Double",
+    "monogram": "d.",
+    "title": "Double / 个人作品集",
+    "description": "Double 的个人作品集：小程序、Web 应用，以及从想法到实现的过程。",
+    "tagline": "设计有思考，开发有温度。",
+    "footer": "Double / Selected work",
+    "isDemo": true,
+    "hero": {
+      "eyebrow": "INDEPENDENT DEVELOPER",
+      "heading": ["把想法，", "做成好用的产品"],
+      "description": "你好，我是 Double。\n关注体验，也在意每一行实现。\n这里是我的小程序与 Web 作品。"
+    }
+  },
+  "categories": [
+    {
+      "id": "mini-program",
+      "label": "小程序"
+    },
+    {
+      "id": "web",
+      "label": "Web 应用"
+    }
+  ],
+  "projects": [
+    {
+      "slug": "mori",
+      "name": "MORI",
+      "subtitle": "一杯咖啡的距离",
+      "category": "mini-program",
+      "description": "从选一杯咖啡，到刚好取到它。",
+      "summary": "为独立咖啡店设计的点单小程序。把选品、口味定制与到店自取串成一条简单的路径，让日常的一杯咖啡少一点等待。",
+      "year": "2026",
+      "status": "published",
+      "sortOrder": 10,
+      "featured": true,
+      "isDemo": true,
+      "cover": {
+        "url": "/images/coffee.png",
+        "alt": "MORI 一杯咖啡的距离，概念界面展示"
+      },
+      "color": "#dce5d6",
+      "tags": ["Vue 3", "uni-app", "TypeScript"],
+      "role": "产品设计 / 全栈开发",
+      "duration": "6 周",
+      "sections": [
+        {
+          "id": "challenge",
+          "title": "从一个具体的问题开始。",
+          "paragraphs": [
+            "早高峰的点单往往伴随排队，而线上菜单又容易把选择变得复杂。这个概念项目关注两件事：让第一次使用的人快速完成下单，也让常客更方便地再来一杯。"
+          ]
+        },
+        {
+          "id": "solution",
+          "title": "让体验自然发生。",
+          "paragraphs": [
+            "以菜单为入口，把规格、温度和加料收拢到同一张商品详情中。下单后只保留最重要的取餐信息，让每一步都有明确反馈。"
+          ],
+          "features": [
+            {
+              "title": "更直观的菜单",
+              "text": "按咖啡类型组织商品，用真实照片和简短描述帮助选择。常用规格直接展示，减少反复进入详情。"
+            },
+            {
+              "title": "刚刚好的定制",
+              "text": "把温度、甜度与加料放在同一处，价格随选择更新，确认前就能看到完整订单。"
+            },
+            {
+              "title": "清楚的取餐状态",
+              "text": "付款后展示取餐号与制作进度，订单状态变化可追溯，异常状态有明确的处理入口。"
+            }
+          ]
+        },
+        {
+          "id": "implementation",
+          "title": "界面背后的实现。",
+          "paragraphs": ["按职责组织模块，让交互、数据与服务之间保持清晰的边界。"],
+          "steps": ["uni-app 客户端", "API 服务", "订单与商品数据", "支付与消息回调"],
+          "disclosure": {
+            "title": "查看技术取舍",
+            "text": "订单采用明确的状态转换处理支付与制作进度；支付回调需要幂等处理，前端提交时提供重复操作保护。对慢网络环境优先呈现缓存菜单，并清楚提示订单提交状态。"
+          }
+        },
+        {
+          "id": "reflection",
+          "title": "做完之后，再想一步。",
+          "paragraphs": [
+            "这个案例演示如何把交互设计与工程实现放在一起讲述。正式作品中，可以补充真实的点单转化、加载性能与用户反馈。"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "atlas",
+      "name": "ATLAS",
+      "subtitle": "让知识彼此连接",
+      "category": "web",
+      "description": "收藏之后，让有用的信息再次被找到。",
+      "summary": "面向个人的知识整理工作台。连接文档、链接与笔记，用清楚的组织方式和关系图谱，把零散收藏变成可以持续使用的知识。",
+      "year": "2026",
+      "status": "published",
+      "sortOrder": 20,
+      "featured": false,
+      "isDemo": true,
+      "cover": {
+        "url": "/images/atlas.png",
+        "alt": "ATLAS 让知识彼此连接，概念界面展示"
+      },
+      "color": "#e2def0",
+      "tags": ["React", "Node.js", "PostgreSQL"],
+      "role": "交互设计 / 全栈开发",
+      "duration": "8 周",
+      "sections": [
+        {
+          "id": "challenge",
+          "title": "从一个具体的问题开始。",
+          "paragraphs": [
+            "资料越来越多，真正需要时却很难找到。文件夹能解决归类，却不容易表现一个想法与另一个想法之间的联系。"
+          ]
+        },
+        {
+          "id": "solution",
+          "title": "让体验自然发生。",
+          "paragraphs": [
+            "让标签、全文搜索与双向链接共同工作。保留熟悉的文档列表，同时提供关系视图，让信息既能快速查找，也能顺着关联探索。"
+          ],
+          "features": [
+            {
+              "title": "统一收集入口",
+              "text": "文章链接、短笔记和文档进入同一个收件箱，再逐步整理，减少收集时的决策负担。"
+            },
+            {
+              "title": "关系可见",
+              "text": "通过双向链接构建文档关系，在图谱中发现共同主题，也可以直接回到列表阅读。"
+            },
+            {
+              "title": "搜索优先",
+              "text": "支持标题与正文检索，结合标签缩小范围，搜索结果保留匹配上下文。"
+            }
+          ]
+        },
+        {
+          "id": "implementation",
+          "title": "界面背后的实现。",
+          "paragraphs": ["按职责组织模块，让交互、数据与服务之间保持清晰的边界。"],
+          "steps": ["React 工作台", "文档 API", "PostgreSQL 搜索", "图谱布局引擎"],
+          "disclosure": {
+            "title": "查看技术取舍",
+            "text": "搜索请求进行防抖与取消处理，避免旧结果覆盖新结果。文档列表采用分页加载，关系图谱按当前视野控制渲染范围；复杂计算可以移入 Web Worker。"
+          }
+        },
+        {
+          "id": "reflection",
+          "title": "做完之后，再想一步。",
+          "paragraphs": [
+            "知识工具的价值来自持续使用。正式案例可以展示检索耗时、文档规模以及大图谱渲染时的性能取舍。"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "trail",
+      "name": "TRAIL",
+      "subtitle": "下一程，去山野",
+      "category": "web",
+      "description": "用一条清楚的路线，开启一次新的出发。",
+      "summary": "为周末徒步爱好者设计的路线规划工具。把地图、海拔和行程放在同一个界面，让路线选择与出发准备更有依据。",
+      "year": "2025",
+      "status": "published",
+      "sortOrder": 30,
+      "featured": false,
+      "isDemo": true,
+      "cover": {
+        "url": "/images/trail.png",
+        "alt": "TRAIL 下一程，去山野，概念界面展示"
+      },
+      "color": "#f3dfcc",
+      "tags": ["React", "MapLibre", "TypeScript"],
+      "role": "前端开发 / 交互设计",
+      "duration": "5 周",
+      "sections": [
+        {
+          "id": "challenge",
+          "title": "从一个具体的问题开始。",
+          "paragraphs": [
+            "路线的难度很难只用公里数表达。分散的轨迹、海拔和图片信息，让一次简单的周末出行也需要来回查找。"
+          ]
+        },
+        {
+          "id": "solution",
+          "title": "让体验自然发生。",
+          "paragraphs": [
+            "把路线轨迹与海拔剖面联动，先给出全程概览，再让用户逐段了解路况。关键准备信息与路线一起保存。"
+          ],
+          "features": [
+            {
+              "title": "地图与路线联动",
+              "text": "点选路线即可查看起终点与沿途位置，地图视野随当前选中路段变化。"
+            },
+            {
+              "title": "看懂爬升",
+              "text": "把海拔变化放在路线下方，通过指针联动对应位置，帮助理解难度分布。"
+            },
+            {
+              "title": "带着计划出发",
+              "text": "整理路线、装备清单与沿途提示，保存成一份可再次查看的出行计划。"
+            }
+          ]
+        },
+        {
+          "id": "implementation",
+          "title": "界面背后的实现。",
+          "paragraphs": ["按职责组织模块，让交互、数据与服务之间保持清晰的边界。"],
+          "steps": ["React 界面", "MapLibre 地图", "GeoJSON 轨迹", "浏览器本地存储"],
+          "disclosure": {
+            "title": "查看技术取舍",
+            "text": "轨迹数据根据缩放等级做分级简化，避免一次性绘制所有点。地图与海拔图共享选中路段状态，移动端为地图手势与页面滚动提供明确边界。"
+          }
+        },
+        {
+          "id": "reflection",
+          "title": "做完之后，再想一步。",
+          "paragraphs": [
+            "地图交互需要同时照顾性能和可读性。正式案例可以补充轨迹简化方案、移动端触控测试和实际出行验证。"
+          ]
+        }
+      ]
+    }
+  ]
+}

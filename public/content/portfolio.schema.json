@@ -1,0 +1,458 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "schemaVersion": {
+      "type": "number",
+      "const": 1
+    },
+    "site": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 60
+        },
+        "monogram": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 6
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 300
+        },
+        "publicUrl": {
+          "description": "正式网站根地址，例如 https://portfolio.example.com。",
+          "type": "string",
+          "maxLength": 2048,
+          "format": "uri",
+          "pattern": "^https:\\/\\/[^\\s\\\\@]+$"
+        },
+        "tagline": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "footer": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "isDemo": {
+          "type": "boolean"
+        },
+        "hero": {
+          "type": "object",
+          "properties": {
+            "eyebrow": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 80
+            },
+            "heading": {
+              "minItems": 1,
+              "maxItems": 2,
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 30
+              }
+            },
+            "description": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 300
+            }
+          },
+          "required": [
+            "eyebrow",
+            "heading",
+            "description"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "name",
+        "monogram",
+        "title",
+        "description",
+        "tagline",
+        "footer",
+        "isDemo",
+        "hero"
+      ],
+      "additionalProperties": false
+    },
+    "categories": {
+      "minItems": 1,
+      "maxItems": 20,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 80,
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          },
+          "label": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 30
+          }
+        },
+        "required": [
+          "id",
+          "label"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "projects": {
+      "maxItems": 200,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "$schema": {
+            "type": "string"
+          },
+          "slug": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 80,
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+            "description": "永久链接标识。发布后尽量不改，例如 coffee-mini-app。"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 80
+          },
+          "subtitle": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "category": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 80,
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+            "description": "必须引用 categories 中已有的 id。"
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 240
+          },
+          "summary": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2000
+          },
+          "year": {
+            "type": "string",
+            "pattern": "^20\\d{2}$"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "draft",
+              "published",
+              "archived"
+            ]
+          },
+          "sortOrder": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 100000
+          },
+          "featured": {
+            "type": "boolean"
+          },
+          "isDemo": {
+            "type": "boolean"
+          },
+          "cover": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "maxLength": 2048,
+                    "format": "uri",
+                    "pattern": "^https:\\/\\/[^\\s\\\\@]+$"
+                  },
+                  {
+                    "type": "string",
+                    "minLength": 2,
+                    "maxLength": 2048,
+                    "pattern": "^\\/(?!\\/)[^\\s\\\\?#%]+$"
+                  }
+                ],
+                "description": "图片的 HTTPS 链接，或站内 /images/... 路径。不支持 base64。"
+              },
+              "alt": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200,
+                "description": "图片内容描述，供无障碍阅读与加载失败时使用。"
+              }
+            },
+            "required": [
+              "url",
+              "alt"
+            ],
+            "additionalProperties": false
+          },
+          "color": {
+            "type": "string",
+            "pattern": "^#[0-9a-fA-F]{6}$"
+          },
+          "tags": {
+            "minItems": 1,
+            "maxItems": 20,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 50
+            }
+          },
+          "role": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 150
+          },
+          "duration": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "sections": {
+            "minItems": 1,
+            "maxItems": 16,
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 80,
+                  "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+                },
+                "title": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 100
+                },
+                "paragraphs": {
+                  "minItems": 1,
+                  "maxItems": 20,
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 5000
+                  }
+                },
+                "features": {
+                  "maxItems": 12,
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "title": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 100
+                      },
+                      "text": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 2000
+                      }
+                    },
+                    "required": [
+                      "title",
+                      "text"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "steps": {
+                  "minItems": 2,
+                  "maxItems": 8,
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 100
+                  }
+                },
+                "disclosure": {
+                  "type": "object",
+                  "properties": {
+                    "title": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 100
+                    },
+                    "text": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 5000
+                    }
+                  },
+                  "required": [
+                    "title",
+                    "text"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "id",
+                "title",
+                "paragraphs"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "gallery": {
+            "maxItems": 20,
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "url": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "maxLength": 2048,
+                      "format": "uri",
+                      "pattern": "^https:\\/\\/[^\\s\\\\@]+$"
+                    },
+                    {
+                      "type": "string",
+                      "minLength": 2,
+                      "maxLength": 2048,
+                      "pattern": "^\\/(?!\\/)[^\\s\\\\?#%]+$"
+                    }
+                  ],
+                  "description": "图片的 HTTPS 链接，或站内 /images/... 路径。不支持 base64。"
+                },
+                "alt": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 200,
+                  "description": "图片内容描述，供无障碍阅读与加载失败时使用。"
+                }
+              },
+              "required": [
+                "url",
+                "alt"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "links": {
+            "type": "object",
+            "properties": {
+              "demo": {
+                "type": "string",
+                "maxLength": 2048,
+                "format": "uri",
+                "pattern": "^https:\\/\\/[^\\s\\\\@]+$"
+              },
+              "source": {
+                "type": "string",
+                "maxLength": 2048,
+                "format": "uri",
+                "pattern": "^https:\\/\\/[^\\s\\\\@]+$"
+              }
+            },
+            "additionalProperties": false
+          },
+          "miniProgramCode": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "maxLength": 2048,
+                    "format": "uri",
+                    "pattern": "^https:\\/\\/[^\\s\\\\@]+$"
+                  },
+                  {
+                    "type": "string",
+                    "minLength": 2,
+                    "maxLength": 2048,
+                    "pattern": "^\\/(?!\\/)[^\\s\\\\?#%]+$"
+                  }
+                ],
+                "description": "图片的 HTTPS 链接，或站内 /images/... 路径。不支持 base64。"
+              },
+              "alt": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200,
+                "description": "图片内容描述，供无障碍阅读与加载失败时使用。"
+              }
+            },
+            "required": [
+              "url",
+              "alt"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "slug",
+          "name",
+          "subtitle",
+          "category",
+          "description",
+          "summary",
+          "year",
+          "status",
+          "sortOrder",
+          "featured",
+          "isDemo",
+          "cover",
+          "color",
+          "tags",
+          "role",
+          "duration",
+          "sections"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "site",
+    "categories",
+    "projects"
+  ],
+  "additionalProperties": false
+}

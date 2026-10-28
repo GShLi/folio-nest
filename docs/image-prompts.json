@@ -1,0 +1,17 @@
+{
+  "generator": "built-in imagegen",
+  "assets": [
+    {
+      "path": "public/images/coffee.png",
+      "prompt": "Use case: product-mockup. Asset: landscape 3:2 portfolio case study cover for a fictional coffee ordering WeChat mini app called MORI. Primary request: premium photorealistic 3D studio composition, two elegant cream smartphones showing a very clean Chinese coffee ordering app with espresso product photography, restrained olive green interface. One standing upright to right, another slightly diagonal lower left. Realistic matte cream takeaway cup with minimalist MORI wordmark, coffee beans. Large soft sage-green seamless studio background, gentle sunlight, sophisticated product photography, tactile natural paper, detailed phone screens. Every device fits fully in frame with breathing room. Minimal, no text outside device screens, no headings, no watermark. This is a mockup asset, not the portfolio website itself."
+    },
+    {
+      "path": "public/images/atlas.png",
+      "prompt": "Use case: product-mockup. Asset: landscape 3:2 developer portfolio case cover for a fictional knowledge workspace named ATLAS. An art-directed realistic 3D render of a large elegant thin floating desktop browser interface in perspective, charcoal dark UI showing a knowledge graph of interconnected document nodes in muted violet and white, small navigation sidebar, crisp compact UI. A secondary smaller floating card for a document below to right. Monochromatic pale lavender studio background and sculptural translucent glass cubes, very subtle shadows, clean polished premium digital product presentation. Interface fills center 75 percent of composition but fully in frame. High-quality editorial software product photography, no headline text outside the interface, no watermarks, no generic glowing blobs. The image is an example project mockup."
+    },
+    {
+      "path": "public/images/trail.png",
+      "prompt": "Use case: product-mockup. Asset: landscape 3:2 portfolio case cover for a fictional outdoor route planning web app named TRAIL. Premium editorial overhead photo-real 3D product composition: a silver tablet in landscape orientation showing a very clean route map with contour lines and a single orange hiking route, side panel with mountain photo and route title. Device rests on warm pale peach background. Small folded topographic paper map partly underneath at left, tiny burnt orange compass at lower right, natural sunlight directional shadows. Subtle orange accents, premium restrained interface typography, white interface, no headline outside device, no watermark, generous composition, all device edges visible. Realistic mountaineering route planning app design."
+    }
+  ]
+}

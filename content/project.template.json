@@ -1,0 +1,39 @@
+{
+  "$schema": "../public/content/project.schema.json",
+  "slug": "your-project",
+  "name": "项目名称",
+  "subtitle": "一句话说明项目价值",
+  "category": "web",
+  "description": "用简短的话描述项目解决的问题。",
+  "summary": "说明项目背景、面向的用户，以及你负责的工作。",
+  "year": "2026",
+  "status": "draft",
+  "sortOrder": 100,
+  "featured": false,
+  "isDemo": false,
+  "cover": {
+    "url": "https://images.example.com/your-project/cover.webp",
+    "alt": "项目首页截图"
+  },
+  "color": "#e5e8df",
+  "tags": ["React", "TypeScript"],
+  "role": "前端开发",
+  "duration": "按实际情况填写",
+  "sections": [
+    {
+      "id": "overview",
+      "title": "项目背景",
+      "paragraphs": ["写出真实背景与目标。"]
+    },
+    {
+      "id": "implementation",
+      "title": "技术实现",
+      "paragraphs": ["说明关键难点、选择的方案和取舍。"]
+    },
+    {
+      "id": "results",
+      "title": "结果与复盘",
+      "paragraphs": ["描述可以验证的结果，不使用虚构数据。"]
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+node_modules
+.pnpm-store
+dist
+.cache
+.output
+artifacts
+playwright-report
+test-results
+pnpm-lock.yaml
+public/content/*.schema.json
