@@ -6,6 +6,7 @@
 
 ## 目录
 
+- [界面预览](#界面预览)
 - [功能特性](#功能特性)
 - [技术栈](#技术栈)
 - [快速开始](#快速开始)
@@ -19,6 +20,28 @@
 - [常见问题](#常见问题)
 - [参与开发](#参与开发)
 - [许可证](#许可证)
+
+## 界面预览
+
+以下为网站实际运行截图，展示仓库自带的示例项目。点击图片可以查看原图。
+
+| 首页 · 浅色主题                                                                                                    | 首页 · 深色主题                                                                                                      |
+| ------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------- |
+| [![Folio Nest 浅色首页，展示个人介绍与精选作品](docs/screenshots/home-light.jpg)](docs/screenshots/home-light.jpg) | [![Folio Nest 深色首页，使用相同布局与深色技术配色](docs/screenshots/home-dark.jpg)](docs/screenshots/home-dark.jpg) |
+
+| 作品列表                                                                                                  | 项目详情                                                                                                          |
+| --------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| [![作品列表，包含分类筛选、搜索和作品卡片](docs/screenshots/projects.jpg)](docs/screenshots/projects.jpg) | [![ATLAS 项目详情，展示项目概述与封面](docs/screenshots/project-detail.jpg)](docs/screenshots/project-detail.jpg) |
+
+<details>
+<summary>移动端预览（点击展开）</summary>
+
+<p align="center">
+  <a href="docs/screenshots/mobile-home.jpg"><img src="docs/screenshots/mobile-home.jpg" width="280" alt="移动端浅色首页" /></a>
+  <a href="docs/screenshots/mobile-detail.jpg"><img src="docs/screenshots/mobile-detail.jpg" width="280" alt="移动端深色项目详情" /></a>
+</p>
+
+</details>
 
 ## 功能特性
 
